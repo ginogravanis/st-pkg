@@ -25,6 +25,7 @@ prepare() {
    for patch in "${source[@]:1}"; do
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
    done
+   patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
