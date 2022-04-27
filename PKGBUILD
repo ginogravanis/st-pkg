@@ -13,11 +13,11 @@ provides=()
 conflicts=()
 source=(
    'git+https://git.suckless.org/st'
-   'https://st.suckless.org/patches/solarized/st-solarized-light-0.8.5.diff'
+   'https://st.suckless.org/patches/gruvbox/st-gruvbox-dark-0.8.5.diff'
 )
 md5sums=(
    'SKIP'
-   '659bf57eb08e273115eb746d649187db'
+   '11d65e7ad4905c984f6a4a4c83857031'
 )
 
 prepare() {
