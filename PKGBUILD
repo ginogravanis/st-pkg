@@ -33,11 +33,13 @@ md5sums=(
 
 prepare() {
    local srcroot="$srcdir/$pkgname"
+   git -C "$srcroot" clean -f
    for patch in "${source[@]:1}"; do
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
    done
    patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
    patch -d "$srcroot" -p1 -i "$BUILDDIR/scroll-increment.diff"
+   patch -d "$srcroot" -p1 -i "$BUILDDIR/boxdraw.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
