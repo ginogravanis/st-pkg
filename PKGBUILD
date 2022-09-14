@@ -35,7 +35,7 @@ prepare() {
    local srcroot="$srcdir/$pkgname"
    git -C "$srcroot" clean -f
    for patch in "${source[@]:1}"; do
-      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename $patch)"
+      patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
    done
    patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
    patch -d "$srcroot" -p1 -i "$BUILDDIR/scroll-increment.diff"
@@ -53,7 +53,6 @@ build() {
 
 package() {
    local srcroot="$srcdir/$pkgname"
-   local license_dir="$pkgdir/usr/share/licenses/$pkgname"
    make -C "$srcdir/$pkgname" PREFIX=/usr DESTDIR="$pkgdir/" install
    install -Dm644 "$srcroot/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
    install -Dm644 "$srcroot/README" "$pkgdir/usr/share/doc/$pkgname/README"
