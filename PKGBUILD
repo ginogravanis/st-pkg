@@ -40,6 +40,7 @@ prepare() {
    patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
    patch -d "$srcroot" -p1 -i "$BUILDDIR/scroll-increment.diff"
    patch -d "$srcroot" -p1 -i "$BUILDDIR/boxdraw.diff"
+   patch -d "$srcroot" -p1 -i "$BUILDDIR/simple_plumb-0.8.5.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
