@@ -21,6 +21,12 @@ source=(
    'https://st.suckless.org/patches/scrollback/st-scrollback-mouse-20220127-2c5edf2.diff'
    'https://st.suckless.org/patches/scrollback/st-scrollback-mouse-altscreen-20220127-2c5edf2.diff'
 )
+extra_patches=(
+   'font-size.diff'
+   'scroll-increment.diff'
+   'boxdraw.diff'
+   'simple_plumb-0.8.5.diff'
+)
 md5sums=(
    'SKIP'
    '11d65e7ad4905c984f6a4a4c83857031'
@@ -34,13 +40,11 @@ md5sums=(
 prepare() {
    local srcroot="$srcdir/$pkgname"
    git -C "$srcroot" clean -f
-   for patch in "${source[@]:1}"; do
+   for patch in "${source[@]:1}" "${extra_patches[@]}"; do
+      echo "[patch] Applying $(basename "$patch")..."
       patch -d "$srcroot" -p1 -i "$BUILDDIR/$(basename "$patch")"
+      echo "[patch] ... done"
    done
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/font-size.diff"
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/scroll-increment.diff"
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/boxdraw.diff"
-   patch -d "$srcroot" -p1 -i "$BUILDDIR/simple_plumb-0.8.5.diff"
    cp "$srcroot/config.def.h" "$srcroot/config.h"
 }
 
