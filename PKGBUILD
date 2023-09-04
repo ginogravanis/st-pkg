@@ -27,5 +27,5 @@ package() {
    local srcroot="$srcdir/$pkgname"
    make -C "$srcdir/$pkgname" PREFIX=/usr DESTDIR="$pkgdir/" install
    install -Dm644 "$srcroot/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-   install -Dm644 "$srcroot/README" "$pkgdir/usr/share/doc/$pkgname/README"
+   install -Dm644 "$srcroot/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
 }
