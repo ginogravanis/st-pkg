@@ -25,7 +25,9 @@ build() {
 
 package() {
    local srcroot="$srcdir/$pkgname"
-   make -C "$srcdir/$pkgname" PREFIX=/usr DESTDIR="$pkgdir/" install
-   install -Dm644 "$srcroot/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-   install -Dm644 "$srcroot/README.md" "$pkgdir/usr/share/doc/$pkgname/README.md"
+   local sharedir="$pkgdir/usr/share"
+   make -C "$srcroot" PREFIX=/usr DESTDIR="$pkgdir" install
+   install -Dm0644 -t "$sharedir/licenses/$pkgname" "$srcroot/LICENSE"
+   install -Dm0644 -t "$sharedir/doc/$pkgname" "$srcroot/README.md"
+   install -Dm0644 -t "$sharedir/$pkgname" "$srcroot/st.info"
 }
